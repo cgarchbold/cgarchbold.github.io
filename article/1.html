@@ -1,0 +1,252 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Corgi Classification using CNNs</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/article.css"as="style">
+  <link rel="stylesheet"href="../styles/article.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>COHEN GRAY ARCHBOLD</h1>
+    <span>Computer Vision</span>
+  </a>
+  <small>
+    <a id="about"class="info-link"href="/about.html">👀About</a> /
+    <a id="works"class="info-link"href="/works.html">🔥Works</a> /
+    <a id="articles"class="info-link"href="/articles.html">📚Articles</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="article-container">
+      <h1 id="article-title">
+        Corgi Classification using CNNs
+      </h1>
+      
+        <h2 id="article-subtitle">
+          UKY CS 460 Machine Learning
+        </h2>
+      
+      <time id="article-date">
+        2020.12.04
+      </time>
+      <section id="article-content-container">
+        <details><summary>Table of Contents</summary>
+<p><div class="table-of-contents"><ul><li><a href="#corgi-classification-using-cnns">Corgi Classification Using CNNs</a><ul><li><a href="#dataset">Dataset</a><li><a href="#cnn">CNN</a><li><a href="#testing-accuracy">Testing Accuracy</a></ul></ul></div><p></p>
+</details>
+<h1 id="corgi-classification-using-cnns"tabindex="-1">Corgi Classification Using CNNs</h1>
+<p>##Bringing in the data</p>
+<pre class="hljs"><code>!git clone https://github.com/cgarchbold/460Assignment5.git
+</code></pre>
+<pre><code>Cloning into '460Assignment5'...
+remote: Enumerating objects: 4, done.[K
+remote: Counting objects: 100% (4/4), done.[K
+remote: Compressing objects: 100% (4/4), done.[K
+remote: Total 4 (delta 0), reused 0 (delta 0), pack-reused 0[K
+Unpacking objects: 100% (4/4), done.
+</code></pre>
+<pre class="hljs"><code>!unzip -q ./460Assignment5/data
+</code></pre>
+<pre class="hljs"><code>!mv ./460Assignment5/dataset.py ./
+</code></pre>
+<p>##Imports</p>
+<pre class="hljs"><code>import torch
+import torch.nn as nn
+import numpy as np
+from torch.utils.data import TensorDataset, DataLoader
+import matplotlib.pyplot as plt
+import torch.nn.functional as F
+import torch.optim as optim
+</code></pre>
+<h2 id="dataset"tabindex="-1">Dataset</h2>
+<pre class="hljs"><code>import dataset as corgi_Data
+
+# Use Dr.Harrisons code to import the data
+images,labels,img_names,cls = corgi_Data.load_train('./data/training_data', 224, ['cardigan','pembroke'])
+</code></pre>
+<pre><code>Going to read training images
+Now going to read cardigan files (Index: 0)
+Now going to read pembroke files (Index: 1)
+</code></pre>
+<pre class="hljs"><code># Lets take a look at the first image
+plt.imshow(images[0])
+print(images[0].shape)
+</code></pre>
+<pre><code>(224, 224, 3)
+</code></pre>
+<p><img src="/images/Corgi_Classification_9_1.png"alt="png"loading="lazy"decoding="async"width="257"height="252"></p>
+<pre class="hljs"><code># move the channel to the front
+transformed_images = []
+for image in images:
+    x = np.moveaxis(image, -1, 0)
+    transformed_images.append(x)
+</code></pre>
+<pre class="hljs"><code># converting to tensor shapes
+images_tensor = torch.Tensor(transformed_images)
+labels_tensor = torch.Tensor(labels)
+
+# Make Pytorch dataset and dataloader
+dataset = TensorDataset(images_tensor,labels_tensor)
+print(dataset[1][0].shape)
+dataloader = DataLoader(dataset, batch_size=4, shuffle=True, num_workers=2) # shuffle is important here
+</code></pre>
+<pre><code>torch.Size([3, 224, 224])
+</code></pre>
+<h2 id="cnn"tabindex="-1">CNN</h2>
+<pre class="hljs"><code>class ConvNet(nn.Module):
+    def __init__(self):
+        super(ConvNet, self).__init__()
+        self.conv1 = nn.Conv2d(3, 6, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(6, 16, 5)
+        self.fc1 = nn.Linear(16 * 53 * 53, 120)
+        self.fc2 = nn.Linear(120, 84)
+        self.fc3 = nn.Linear(84, 2)
+
+    def forward(self, x):
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 16 * 53 * 53)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
+
+model = ConvNet()
+</code></pre>
+<pre class="hljs"><code># Training Parameters
+epochs = 10
+
+# setting loss and optimizer
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+</code></pre>
+<pre class="hljs"><code>for epoch in range(epochs):
+
+    running_loss = 0.0
+
+    for i,data in enumerate(dataloader,0):
+
+        inputs,labels = data
+
+        #convert labels to single 0s or 1s
+        labels = np.argmax(labels, axis=1)
+        
+        optimizer.zero_grad()
+
+        outputs = model(inputs)
+
+        loss = criterion(outputs,labels)
+        
+        loss.backward()
+        optimizer.step()
+
+        running_loss += loss.item()
+        if i % 25 == 24:    # print every 10 mini-batches
+            print('[%d, %5d] loss: %.3f' %
+                  (epoch + 1, i + 1, running_loss / 25))
+            running_loss = 0.0
+
+       
+</code></pre>
+<pre><code>[1,    25] loss: 0.739
+[1,    50] loss: 0.693
+[2,    25] loss: 0.680
+[2,    50] loss: 0.683
+[3,    25] loss: 0.657
+[3,    50] loss: 0.630
+[4,    25] loss: 0.773
+[4,    50] loss: 0.671
+[5,    25] loss: 0.595
+[5,    50] loss: 0.623
+[6,    25] loss: 0.386
+[6,    50] loss: 0.426
+[7,    25] loss: 0.194
+[7,    50] loss: 0.244
+[8,    25] loss: 0.104
+[8,    50] loss: 0.053
+[9,    25] loss: 0.028
+[9,    50] loss: 0.047
+[10,    25] loss: 0.147
+[10,    50] loss: 0.103
+</code></pre>
+<pre class="hljs"><code>PATH = './corgi_net.pth'
+torch.save(model.state_dict(), PATH)
+</code></pre>
+<h2 id="testing-accuracy"tabindex="-1">Testing Accuracy</h2>
+<p>Lets load in the test data the same way we did the training data</p>
+<pre class="hljs"><code>test_images,test_labels,test_img_names,test_cls = corgi_Data.load_train('./data/testing_data', 224, ['cardigan','pembroke'])
+
+test_transformed_images = []
+for image in test_images:
+    x = np.moveaxis(image, -1, 0)
+    test_transformed_images.append(x)
+
+test_images_tensor = torch.Tensor(test_transformed_images)
+test_labels_tensor = torch.Tensor(test_labels)
+
+test_dataset = TensorDataset(test_images_tensor,test_labels_tensor)
+print(dataset[1][0].shape)
+test_dataloader = DataLoader(test_dataset, batch_size=4, shuffle=False, num_workers=2)
+</code></pre>
+<pre><code>Going to read training images
+Now going to read cardigan files (Index: 0)
+Now going to read pembroke files (Index: 1)
+torch.Size([3, 224, 224])
+</code></pre>
+<pre class="hljs"><code>correct = 0
+total = 0
+with torch.no_grad():
+    for data in test_dataloader:
+        
+        images, labels = data
+
+        #convert label to single classes
+        labels = np.argmax(labels,axis=1)
+        
+        outputs = model(images)
+        
+        _, predicted = torch.max(outputs.data, 1)
+        
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+print('Accuracy of the network on the test images: %d %%' % (
+    100 * correct / total))
+</code></pre>
+<pre><code>Accuracy of the network on the test images: 75 %
+</code></pre>
+
+      </section>
+      <section id="article-navigation">
+        
+          <div class="article-navigation-item article-navigation-next">
+            <a href="/article/0.html">
+              <div class="article-navigation-arrow article-navigation-next">＜</div>
+              <div class="article-navigation-content article-navigation-next">
+                <p class="article-navigation-title">Example Article</p>
+                <p class="article-navigation-subtitle">Sed sit amet arcu a diam tincidunt porta</p>
+              </div>
+            </a>
+          </div>
+        
+        
+      </section>
+      <section id="article-list-button-container">
+        <a href="/articles.html">
+          <div id="article-list-button">📚</div>
+        </a>
+      </section>
+    </article>
+  </main>
+
+

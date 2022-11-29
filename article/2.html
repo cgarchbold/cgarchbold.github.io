@@ -1,0 +1,439 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapping Kentucky County Populations</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/article.css"as="style">
+  <link rel="stylesheet"href="../styles/article.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>COHEN GRAY ARCHBOLD</h1>
+    <span>Computer Vision</span>
+  </a>
+  <small>
+    <a id="about"class="info-link"href="/about.html">👀About</a> /
+    <a id="works"class="info-link"href="/works.html">🔥Works</a> /
+    <a id="articles"class="info-link"href="/articles.html">📚Articles</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="article-container">
+      <h1 id="article-title">
+        Mapping Kentucky County Populations
+      </h1>
+      
+        <h2 id="article-subtitle">
+          Ge
+        </h2>
+      
+      <time id="article-date">
+        2019.2.01
+      </time>
+      <section id="article-content-container">
+        <details><summary>Table of Contents</summary>
+<p><div class="table-of-contents"><ul></ul></div><p></p>
+</details>
+<pre class="hljs"><code>from google.colab import drive
+drive.mount('/content/drive')
+</code></pre>
+<pre><code>Mounted at /content/drive
+</code></pre>
+<pre class="hljs"><code>pip install geopandas
+</code></pre>
+<pre class="hljs"><code>import geopandas as gpd
+
+counties = gpd.read_file(&quot;/content/drive/My Drive/Data/Kentucky/county_census/temp/county_census.shp&quot;)
+
+counties.head()
+
+</code></pre>
+<p>&lt;div&gt;
+&lt;style scoped&gt;
+.dataframe tbody tr th:only-of-type {
+vertical-align: middle;
+}</p>
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p>&lt;/style&gt;
+&lt;table border=“1” class=“dataframe”&gt;
+&lt;thead&gt;
+&lt;tr style=“text-align: right;”&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;NAME&lt;/th&gt;
+&lt;th&gt;NAME2&lt;/th&gt;
+&lt;th&gt;FIPS_NO&lt;/th&gt;
+&lt;th&gt;FIPS_TXT&lt;/th&gt;
+&lt;th&gt;CENPOP2000&lt;/th&gt;
+&lt;th&gt;POPEST05&lt;/th&gt;
+&lt;th&gt;POPEST10&lt;/th&gt;
+&lt;th&gt;POPEST15&lt;/th&gt;
+&lt;th&gt;POPEST20&lt;/th&gt;
+&lt;th&gt;POPEST25&lt;/th&gt;
+&lt;th&gt;POPEST30&lt;/th&gt;
+&lt;th&gt;HHPOP90&lt;/th&gt;
+&lt;th&gt;HH90&lt;/th&gt;
+&lt;th&gt;POPPERHH90&lt;/th&gt;
+&lt;th&gt;HHPOP95&lt;/th&gt;
+&lt;th&gt;HH95&lt;/th&gt;
+&lt;th&gt;POPPERHH95&lt;/th&gt;
+&lt;th&gt;HHPOP00&lt;/th&gt;
+&lt;th&gt;HH00&lt;/th&gt;
+&lt;th&gt;POPPERHH00&lt;/th&gt;
+&lt;th&gt;HHPOP05&lt;/th&gt;
+&lt;th&gt;HH05&lt;/th&gt;
+&lt;th&gt;POPPERHH05&lt;/th&gt;
+&lt;th&gt;HHPOP10&lt;/th&gt;
+&lt;th&gt;HH10&lt;/th&gt;
+&lt;th&gt;POPPERHH10&lt;/th&gt;
+&lt;th&gt;HHPOP15&lt;/th&gt;
+&lt;th&gt;HH15&lt;/th&gt;
+&lt;th&gt;POPPERHH15&lt;/th&gt;
+&lt;th&gt;HHPOP20&lt;/th&gt;
+&lt;th&gt;HH20&lt;/th&gt;
+&lt;th&gt;POPPERHH20&lt;/th&gt;
+&lt;th&gt;HHPOP25&lt;/th&gt;
+&lt;th&gt;HH25&lt;/th&gt;
+&lt;th&gt;POPPERHH25&lt;/th&gt;
+&lt;th&gt;HHPOP30&lt;/th&gt;
+&lt;th&gt;HH30&lt;/th&gt;
+&lt;th&gt;POPPERHH30&lt;/th&gt;
+&lt;th&gt;area&lt;/th&gt;
+&lt;th&gt;len&lt;/th&gt;
+&lt;th&gt;geometry&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt;GREENUP&lt;/td&gt;
+&lt;td&gt;Greenup&lt;/td&gt;
+&lt;td&gt;89&lt;/td&gt;
+&lt;td&gt;089&lt;/td&gt;
+&lt;td&gt;36891&lt;/td&gt;
+&lt;td&gt;37000&lt;/td&gt;
+&lt;td&gt;37026&lt;/td&gt;
+&lt;td&gt;37005&lt;/td&gt;
+&lt;td&gt;36886&lt;/td&gt;
+&lt;td&gt;36676&lt;/td&gt;
+&lt;td&gt;36354&lt;/td&gt;
+&lt;td&gt;36302&lt;/td&gt;
+&lt;td&gt;13414&lt;/td&gt;
+&lt;td&gt;2.71&lt;/td&gt;
+&lt;td&gt;36373&lt;/td&gt;
+&lt;td&gt;13975&lt;/td&gt;
+&lt;td&gt;2.60&lt;/td&gt;
+&lt;td&gt;36444&lt;/td&gt;
+&lt;td&gt;14536&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;36553&lt;/td&gt;
+&lt;td&gt;14880&lt;/td&gt;
+&lt;td&gt;2.46&lt;/td&gt;
+&lt;td&gt;36579&lt;/td&gt;
+&lt;td&gt;15205&lt;/td&gt;
+&lt;td&gt;2.41&lt;/td&gt;
+&lt;td&gt;36558&lt;/td&gt;
+&lt;td&gt;15358&lt;/td&gt;
+&lt;td&gt;2.38&lt;/td&gt;
+&lt;td&gt;36439&lt;/td&gt;
+&lt;td&gt;15308&lt;/td&gt;
+&lt;td&gt;2.38&lt;/td&gt;
+&lt;td&gt;36229&lt;/td&gt;
+&lt;td&gt;15220&lt;/td&gt;
+&lt;td&gt;2.38&lt;/td&gt;
+&lt;td&gt;35907&lt;/td&gt;
+&lt;td&gt;15085&lt;/td&gt;
+&lt;td&gt;2.38&lt;/td&gt;
+&lt;td&gt;9.880911e+09&lt;/td&gt;
+&lt;td&gt;519983.004395&lt;/td&gt;
+&lt;td&gt;POLYGON ((5696927.001 4163203.493, 5697018.008…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt;MASON&lt;/td&gt;
+&lt;td&gt;Mason&lt;/td&gt;
+&lt;td&gt;161&lt;/td&gt;
+&lt;td&gt;161&lt;/td&gt;
+&lt;td&gt;16800&lt;/td&gt;
+&lt;td&gt;16893&lt;/td&gt;
+&lt;td&gt;17116&lt;/td&gt;
+&lt;td&gt;17476&lt;/td&gt;
+&lt;td&gt;17763&lt;/td&gt;
+&lt;td&gt;18011&lt;/td&gt;
+&lt;td&gt;18173&lt;/td&gt;
+&lt;td&gt;16490&lt;/td&gt;
+&lt;td&gt;6537&lt;/td&gt;
+&lt;td&gt;2.52&lt;/td&gt;
+&lt;td&gt;16479&lt;/td&gt;
+&lt;td&gt;6692&lt;/td&gt;
+&lt;td&gt;2.46&lt;/td&gt;
+&lt;td&gt;16468&lt;/td&gt;
+&lt;td&gt;6847&lt;/td&gt;
+&lt;td&gt;2.41&lt;/td&gt;
+&lt;td&gt;16561&lt;/td&gt;
+&lt;td&gt;6804&lt;/td&gt;
+&lt;td&gt;2.43&lt;/td&gt;
+&lt;td&gt;16784&lt;/td&gt;
+&lt;td&gt;6986&lt;/td&gt;
+&lt;td&gt;2.40&lt;/td&gt;
+&lt;td&gt;17144&lt;/td&gt;
+&lt;td&gt;7182&lt;/td&gt;
+&lt;td&gt;2.39&lt;/td&gt;
+&lt;td&gt;17431&lt;/td&gt;
+&lt;td&gt;7302&lt;/td&gt;
+&lt;td&gt;2.39&lt;/td&gt;
+&lt;td&gt;17679&lt;/td&gt;
+&lt;td&gt;7406&lt;/td&gt;
+&lt;td&gt;2.39&lt;/td&gt;
+&lt;td&gt;17841&lt;/td&gt;
+&lt;td&gt;7474&lt;/td&gt;
+&lt;td&gt;2.39&lt;/td&gt;
+&lt;td&gt;6.869176e+09&lt;/td&gt;
+&lt;td&gt;353399.657348&lt;/td&gt;
+&lt;td&gt;POLYGON ((5447610.998 4172645.259, 5448187.491…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt;CARROLL&lt;/td&gt;
+&lt;td&gt;Carroll&lt;/td&gt;
+&lt;td&gt;41&lt;/td&gt;
+&lt;td&gt;041&lt;/td&gt;
+&lt;td&gt;10155&lt;/td&gt;
+&lt;td&gt;10334&lt;/td&gt;
+&lt;td&gt;10631&lt;/td&gt;
+&lt;td&gt;10993&lt;/td&gt;
+&lt;td&gt;11304&lt;/td&gt;
+&lt;td&gt;11559&lt;/td&gt;
+&lt;td&gt;11749&lt;/td&gt;
+&lt;td&gt;9147&lt;/td&gt;
+&lt;td&gt;3505&lt;/td&gt;
+&lt;td&gt;2.61&lt;/td&gt;
+&lt;td&gt;9526&lt;/td&gt;
+&lt;td&gt;3723&lt;/td&gt;
+&lt;td&gt;2.56&lt;/td&gt;
+&lt;td&gt;9905&lt;/td&gt;
+&lt;td&gt;3940&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;10084&lt;/td&gt;
+&lt;td&gt;4050&lt;/td&gt;
+&lt;td&gt;2.49&lt;/td&gt;
+&lt;td&gt;10381&lt;/td&gt;
+&lt;td&gt;4210&lt;/td&gt;
+&lt;td&gt;2.47&lt;/td&gt;
+&lt;td&gt;10743&lt;/td&gt;
+&lt;td&gt;4378&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;11054&lt;/td&gt;
+&lt;td&gt;4505&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;11309&lt;/td&gt;
+&lt;td&gt;4609&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;11499&lt;/td&gt;
+&lt;td&gt;4686&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;3.828135e+09&lt;/td&gt;
+&lt;td&gt;329873.908860&lt;/td&gt;
+&lt;td&gt;POLYGON ((5040176.500 4156066.248, 5040339.502…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt;LEWIS&lt;/td&gt;
+&lt;td&gt;Lewis&lt;/td&gt;
+&lt;td&gt;135&lt;/td&gt;
+&lt;td&gt;135&lt;/td&gt;
+&lt;td&gt;14092&lt;/td&gt;
+&lt;td&gt;13608&lt;/td&gt;
+&lt;td&gt;13578&lt;/td&gt;
+&lt;td&gt;13969&lt;/td&gt;
+&lt;td&gt;14267&lt;/td&gt;
+&lt;td&gt;14476&lt;/td&gt;
+&lt;td&gt;14621&lt;/td&gt;
+&lt;td&gt;12901&lt;/td&gt;
+&lt;td&gt;4713&lt;/td&gt;
+&lt;td&gt;2.74&lt;/td&gt;
+&lt;td&gt;13391&lt;/td&gt;
+&lt;td&gt;5068&lt;/td&gt;
+&lt;td&gt;2.64&lt;/td&gt;
+&lt;td&gt;13880&lt;/td&gt;
+&lt;td&gt;5422&lt;/td&gt;
+&lt;td&gt;2.56&lt;/td&gt;
+&lt;td&gt;13396&lt;/td&gt;
+&lt;td&gt;5327&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;13366&lt;/td&gt;
+&lt;td&gt;5412&lt;/td&gt;
+&lt;td&gt;2.47&lt;/td&gt;
+&lt;td&gt;13757&lt;/td&gt;
+&lt;td&gt;5621&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;14055&lt;/td&gt;
+&lt;td&gt;5743&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;14264&lt;/td&gt;
+&lt;td&gt;5828&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;14409&lt;/td&gt;
+&lt;td&gt;5887&lt;/td&gt;
+&lt;td&gt;2.45&lt;/td&gt;
+&lt;td&gt;1.380964e+10&lt;/td&gt;
+&lt;td&gt;750422.834077&lt;/td&gt;
+&lt;td&gt;POLYGON ((5692349.493 4154522.005, 5692476.497…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt;TRIMBLE&lt;/td&gt;
+&lt;td&gt;Trimble&lt;/td&gt;
+&lt;td&gt;223&lt;/td&gt;
+&lt;td&gt;223&lt;/td&gt;
+&lt;td&gt;8125&lt;/td&gt;
+&lt;td&gt;9105&lt;/td&gt;
+&lt;td&gt;10316&lt;/td&gt;
+&lt;td&gt;11434&lt;/td&gt;
+&lt;td&gt;12467&lt;/td&gt;
+&lt;td&gt;13383&lt;/td&gt;
+&lt;td&gt;14163&lt;/td&gt;
+&lt;td&gt;6027&lt;/td&gt;
+&lt;td&gt;2246&lt;/td&gt;
+&lt;td&gt;2.68&lt;/td&gt;
+&lt;td&gt;7049&lt;/td&gt;
+&lt;td&gt;2692&lt;/td&gt;
+&lt;td&gt;2.62&lt;/td&gt;
+&lt;td&gt;8070&lt;/td&gt;
+&lt;td&gt;3137&lt;/td&gt;
+&lt;td&gt;2.57&lt;/td&gt;
+&lt;td&gt;9050&lt;/td&gt;
+&lt;td&gt;3555&lt;/td&gt;
+&lt;td&gt;2.55&lt;/td&gt;
+&lt;td&gt;10261&lt;/td&gt;
+&lt;td&gt;4074&lt;/td&gt;
+&lt;td&gt;2.52&lt;/td&gt;
+&lt;td&gt;11379&lt;/td&gt;
+&lt;td&gt;4542&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;12412&lt;/td&gt;
+&lt;td&gt;4954&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;13328&lt;/td&gt;
+&lt;td&gt;5320&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;14108&lt;/td&gt;
+&lt;td&gt;5631&lt;/td&gt;
+&lt;td&gt;2.51&lt;/td&gt;
+&lt;td&gt;4.354949e+09&lt;/td&gt;
+&lt;td&gt;296645.732761&lt;/td&gt;
+&lt;td&gt;POLYGON ((5040176.500 4156066.248, 5040766.002…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</p>
+<pre class="hljs"><code>data = counties.loc[:, ['geometry','POPEST25']].copy()
+
+data.head()
+</code></pre>
+<p>&lt;div&gt;
+&lt;style scoped&gt;
+.dataframe tbody tr th:only-of-type {
+vertical-align: middle;
+}</p>
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p>&lt;/style&gt;
+&lt;table border=“1” class=“dataframe”&gt;
+&lt;thead&gt;
+&lt;tr style=“text-align: right;”&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;geometry&lt;/th&gt;
+&lt;th&gt;POPEST25&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt;POLYGON ((5696927.001 4163203.493, 5697018.008…&lt;/td&gt;
+&lt;td&gt;36676&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt;POLYGON ((5447610.998 4172645.259, 5448187.491…&lt;/td&gt;
+&lt;td&gt;18011&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt;POLYGON ((5040176.500 4156066.248, 5040339.502…&lt;/td&gt;
+&lt;td&gt;11559&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt;POLYGON ((5692349.493 4154522.005, 5692476.497…&lt;/td&gt;
+&lt;td&gt;14476&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt;POLYGON ((5040176.500 4156066.248, 5040766.002…&lt;/td&gt;
+&lt;td&gt;13383&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</p>
+<pre class="hljs"><code>data.plot(column=&quot;POPEST25&quot;, legend=True,legend_kwds={'label': &quot;Population by County&quot;, 'orientation': &quot;horizontal&quot;}, figsize = (20,20))
+</code></pre>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f7030df6e80&gt;
+</code></pre>
+<p><img src="/images/MappingKentuckyCountyPopulations_4_1.png"alt="png"loading="lazy"decoding="async"width="1184"height="749"></p>
+
+      </section>
+      <section id="article-navigation">
+        
+          <div class="article-navigation-item article-navigation-next">
+            <a href="/article/3.html">
+              <div class="article-navigation-arrow article-navigation-next">＜</div>
+              <div class="article-navigation-content article-navigation-next">
+                <p class="article-navigation-title">Mapping Kentucky Fire Stations</p>
+                <p class="article-navigation-subtitle"></p>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="article-navigation-item article-navigation-prev">
+            <a href="/article/0.html">
+              <div class="article-navigation-arrow article-navigation-prev">＞</div>
+              <div class="article-navigation-content article-navigation-prev">
+                <p class="article-navigation-title">Example Article</p>
+                <p class="article-navigation-subtitle">Sed sit amet arcu a diam tincidunt porta</p>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      <section id="article-list-button-container">
+        <a href="/articles.html">
+          <div id="article-list-button">📚</div>
+        </a>
+      </section>
+    </article>
+  </main>
+
+

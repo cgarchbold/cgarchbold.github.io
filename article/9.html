@@ -1,0 +1,476 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Graphing Pokemon Data</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/article.css"as="style">
+  <link rel="stylesheet"href="../styles/article.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>COHEN GRAY ARCHBOLD</h1>
+    <span>Computer Vision</span>
+  </a>
+  <small>
+    <a id="about"class="info-link"href="/about.html">👀About</a> /
+    <a id="works"class="info-link"href="/works.html">🔥Works</a> /
+    <a id="articles"class="info-link"href="/articles.html">📚Articles</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="article-container">
+      <h1 id="article-title">
+        Graphing Pokemon Data
+      </h1>
+      
+      <time id="article-date">
+        2020.7.20
+      </time>
+      <section id="article-content-container">
+        <details><summary>Table of Contents</summary>
+<p><div class="table-of-contents"><ul><li><a href="#lets-look-at-the-pokemon-data">Lets look at the Pokemon Data</a></ul></div><p></p>
+</details>
+<h1 id="lets-look-at-the-pokemon-data"tabindex="-1">Lets look at the Pokemon Data</h1>
+<p><a href="https://www.kaggle.com/rounakbanik/pokemon">https://www.kaggle.com/rounakbanik/pokemon</a></p>
+<pre class="hljs"><code>from google.colab import drive
+drive.mount('/content/gdrive')
+</code></pre>
+<pre><code>Go to this URL in a browser: https://accounts.google.com/o/oauth2/auth?client_id=947318989803-6bn6qk8qdgf4n4g3pfee6491hc0brc4i.apps.googleusercontent.com&amp;redirect_uri=urn%3aietf%3awg%3aoauth%3a2.0%3aoob&amp;scope=email%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdocs.test%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive%20https%3a%2f%2fwww.googleapis.com%2fauth%2fdrive.photos.readonly%20https%3a%2f%2fwww.googleapis.com%2fauth%2fpeopleapi.readonly&amp;response_type=code
+
+Enter your authorization code:
+··········
+Mounted at /content/gdrive
+</code></pre>
+<pre class="hljs"><code>import pandas as pd
+</code></pre>
+<pre class="hljs"><code>pokemon_data = pd.read_csv('/content/gdrive/My Drive/Data/Pokemon/pokemon.csv')
+
+pokemon_data.head()
+</code></pre>
+<p>&lt;div&gt;
+&lt;style scoped&gt;
+.dataframe tbody tr th:only-of-type {
+vertical-align: middle;
+}</p>
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p>&lt;/style&gt;
+&lt;table border=“1” class=“dataframe”&gt;
+&lt;thead&gt;
+&lt;tr style=“text-align: right;”&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;abilities&lt;/th&gt;
+&lt;th&gt;against_bug&lt;/th&gt;
+&lt;th&gt;against_dark&lt;/th&gt;
+&lt;th&gt;against_dragon&lt;/th&gt;
+&lt;th&gt;against_electric&lt;/th&gt;
+&lt;th&gt;against_fairy&lt;/th&gt;
+&lt;th&gt;against_fight&lt;/th&gt;
+&lt;th&gt;against_fire&lt;/th&gt;
+&lt;th&gt;against_flying&lt;/th&gt;
+&lt;th&gt;against_ghost&lt;/th&gt;
+&lt;th&gt;against_grass&lt;/th&gt;
+&lt;th&gt;against_ground&lt;/th&gt;
+&lt;th&gt;against_ice&lt;/th&gt;
+&lt;th&gt;against_normal&lt;/th&gt;
+&lt;th&gt;against_poison&lt;/th&gt;
+&lt;th&gt;against_psychic&lt;/th&gt;
+&lt;th&gt;against_rock&lt;/th&gt;
+&lt;th&gt;against_steel&lt;/th&gt;
+&lt;th&gt;against_water&lt;/th&gt;
+&lt;th&gt;attack&lt;/th&gt;
+&lt;th&gt;base_egg_steps&lt;/th&gt;
+&lt;th&gt;base_happiness&lt;/th&gt;
+&lt;th&gt;base_total&lt;/th&gt;
+&lt;th&gt;capture_rate&lt;/th&gt;
+&lt;th&gt;classfication&lt;/th&gt;
+&lt;th&gt;defense&lt;/th&gt;
+&lt;th&gt;experience_growth&lt;/th&gt;
+&lt;th&gt;height_m&lt;/th&gt;
+&lt;th&gt;hp&lt;/th&gt;
+&lt;th&gt;japanese_name&lt;/th&gt;
+&lt;th&gt;name&lt;/th&gt;
+&lt;th&gt;percentage_male&lt;/th&gt;
+&lt;th&gt;pokedex_number&lt;/th&gt;
+&lt;th&gt;sp_attack&lt;/th&gt;
+&lt;th&gt;sp_defense&lt;/th&gt;
+&lt;th&gt;speed&lt;/th&gt;
+&lt;th&gt;type1&lt;/th&gt;
+&lt;th&gt;type2&lt;/th&gt;
+&lt;th&gt;weight_kg&lt;/th&gt;
+&lt;th&gt;generation&lt;/th&gt;
+&lt;th&gt;is_legendary&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt;[‘Overgrow’, ‘Chlorophyll’]&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;49&lt;/td&gt;
+&lt;td&gt;5120&lt;/td&gt;
+&lt;td&gt;70&lt;/td&gt;
+&lt;td&gt;318&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Seed Pokémon&lt;/td&gt;
+&lt;td&gt;49&lt;/td&gt;
+&lt;td&gt;1059860&lt;/td&gt;
+&lt;td&gt;0.7&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Fushigidaneフシギダネ&lt;/td&gt;
+&lt;td&gt;Bulbasaur&lt;/td&gt;
+&lt;td&gt;88.1&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;65&lt;/td&gt;
+&lt;td&gt;65&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;td&gt;6.9&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt;[‘Overgrow’, ‘Chlorophyll’]&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;62&lt;/td&gt;
+&lt;td&gt;5120&lt;/td&gt;
+&lt;td&gt;70&lt;/td&gt;
+&lt;td&gt;405&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Seed Pokémon&lt;/td&gt;
+&lt;td&gt;63&lt;/td&gt;
+&lt;td&gt;1059860&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;Fushigisouフシギソウ&lt;/td&gt;
+&lt;td&gt;Ivysaur&lt;/td&gt;
+&lt;td&gt;88.1&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;td&gt;13.0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt;[‘Overgrow’, ‘Chlorophyll’]&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.25&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;100&lt;/td&gt;
+&lt;td&gt;5120&lt;/td&gt;
+&lt;td&gt;70&lt;/td&gt;
+&lt;td&gt;625&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Seed Pokémon&lt;/td&gt;
+&lt;td&gt;123&lt;/td&gt;
+&lt;td&gt;1059860&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;Fushigibanaフシギバナ&lt;/td&gt;
+&lt;td&gt;Venusaur&lt;/td&gt;
+&lt;td&gt;88.1&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;122&lt;/td&gt;
+&lt;td&gt;120&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;td&gt;100.0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt;[‘Blaze’, ‘Solar Power’]&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.50&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;52&lt;/td&gt;
+&lt;td&gt;5120&lt;/td&gt;
+&lt;td&gt;70&lt;/td&gt;
+&lt;td&gt;309&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Lizard Pokémon&lt;/td&gt;
+&lt;td&gt;43&lt;/td&gt;
+&lt;td&gt;1059860&lt;/td&gt;
+&lt;td&gt;0.6&lt;/td&gt;
+&lt;td&gt;39&lt;/td&gt;
+&lt;td&gt;Hitokageヒトカゲ&lt;/td&gt;
+&lt;td&gt;Charmander&lt;/td&gt;
+&lt;td&gt;88.1&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;60&lt;/td&gt;
+&lt;td&gt;50&lt;/td&gt;
+&lt;td&gt;65&lt;/td&gt;
+&lt;td&gt;fire&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;td&gt;8.5&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt;[‘Blaze’, ‘Solar Power’]&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;0.50&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;1.0&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;0.5&lt;/td&gt;
+&lt;td&gt;2.0&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;5120&lt;/td&gt;
+&lt;td&gt;70&lt;/td&gt;
+&lt;td&gt;405&lt;/td&gt;
+&lt;td&gt;45&lt;/td&gt;
+&lt;td&gt;Flame Pokémon&lt;/td&gt;
+&lt;td&gt;58&lt;/td&gt;
+&lt;td&gt;1059860&lt;/td&gt;
+&lt;td&gt;1.1&lt;/td&gt;
+&lt;td&gt;58&lt;/td&gt;
+&lt;td&gt;Lizardoリザード&lt;/td&gt;
+&lt;td&gt;Charmeleon&lt;/td&gt;
+&lt;td&gt;88.1&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;65&lt;/td&gt;
+&lt;td&gt;80&lt;/td&gt;
+&lt;td&gt;fire&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;td&gt;19.0&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;0&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/div&gt;</p>
+<p>Lets choose something to look at and analyze. Lets see the distribution of Pokemon types in Generation 1.</p>
+<pre class="hljs"><code>T_G_data = pokemon_data[['generation','type1','type2']]
+
+T_G_data = T_G_data[T_G_data['generation'] == 1]
+
+# Here you can notice that some pokemon have 2 types, meaning that type 2 will be populated with NaNs for pokemon with only one type.
+T_G_data = T_G_data[['type1','type2']]
+
+T_G_data
+</code></pre>
+<p>&lt;div&gt;
+&lt;style scoped&gt;
+.dataframe tbody tr th:only-of-type {
+vertical-align: middle;
+}</p>
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+<p>&lt;/style&gt;
+&lt;table border=“1” class=“dataframe”&gt;
+&lt;thead&gt;
+&lt;tr style=“text-align: right;”&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;type1&lt;/th&gt;
+&lt;th&gt;type2&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;th&gt;0&lt;/th&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;1&lt;/th&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;2&lt;/th&gt;
+&lt;td&gt;grass&lt;/td&gt;
+&lt;td&gt;poison&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;3&lt;/th&gt;
+&lt;td&gt;fire&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;4&lt;/th&gt;
+&lt;td&gt;fire&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;…&lt;/th&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;td&gt;…&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;146&lt;/th&gt;
+&lt;td&gt;dragon&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;147&lt;/th&gt;
+&lt;td&gt;dragon&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;148&lt;/th&gt;
+&lt;td&gt;dragon&lt;/td&gt;
+&lt;td&gt;flying&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;149&lt;/th&gt;
+&lt;td&gt;psychic&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;150&lt;/th&gt;
+&lt;td&gt;psychic&lt;/td&gt;
+&lt;td&gt;NaN&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;151 rows × 2 columns&lt;/p&gt;
+&lt;/div&gt;</p>
+<p>Yep! That’s correct. There are 151 Pokemon in Generation 1.</p>
+<p>We now need to take this data and make counts, we can do that using pandas.</p>
+<pre class="hljs"><code>type1 = T_G_data['type1'].value_counts()
+type2 = T_G_data['type2'].value_counts()
+</code></pre>
+<pre class="hljs"><code>type_counts = type1.add(type2,fill_value=0)
+</code></pre>
+<pre class="hljs"><code>import matplotlib.pyplot as plt
+
+plt.figure(figsize=(30,20))
+#type_counts
+plt.bar(type_counts.index.values, height = type_counts, width = 0.7)
+</code></pre>
+<pre><code>&lt;BarContainer object of 18 artists&gt;
+</code></pre>
+<p><img src="/images/PokemonGraphing_9_1.png"alt="png"loading="lazy"decoding="async"width="1708"height="1118"></p>
+
+      </section>
+      <section id="article-navigation">
+        
+        
+          <div class="article-navigation-item article-navigation-prev">
+            <a href="/article/7.html">
+              <div class="article-navigation-arrow article-navigation-prev">＞</div>
+              <div class="article-navigation-content article-navigation-prev">
+                <p class="article-navigation-title">Pittsburgh Data Analysis</p>
+                <p class="article-navigation-subtitle"></p>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      <section id="article-list-button-container">
+        <a href="/articles.html">
+          <div id="article-list-button">📚</div>
+        </a>
+      </section>
+    </article>
+  </main>
+
+
