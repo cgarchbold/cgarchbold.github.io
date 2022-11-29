@@ -1,17 +1,17 @@
 ---
-title: "Lorem Ipsum"
-subtitle: "Sed sit amet arcu a diam tincidunt porta"
-thumbnail: "/images/800x600.png"
+title: "Hennepin County Dataset"
+subtitle: "A geospatial dataset of parcels and their market value"
+thumbnail: "/images/hennepin_example.jpg"
 ---
 
-![dummy image](/images/800x600.png)
+![dummy image](/images/hennepin_example.jpg)
 
-![dummy image](/images/800x600.png)
+![dummy image](/images/hennepin_example.jpg)
 
-_**Lorem Ipsum (2019)**_
+[Link to Repsitory](https://github.com/cgarchbold/GISGather)
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+The Hennepin County Dataset was collected using GIS Open Data for Hennepin County, Minnesota. For each sample, a sub-region of fine-level aerial imagery from the year 2020 was cropped. 1915 images of size $302 \times 302$ were collected with a Ground Sample Distance (GSD) of \SI{1}{\meter}. 
 
-Sed sit amet arcu a diam tincidunt porta.
+Geometries were extracted from GIS Open Data for parcels. For each chip, corresponding parcels fully contained within each chip were extracted. We also collected the parcels' market value, which was accurate as of 2020. In order to effectively use the dataset for a regression task, we cleaned outliers and defects from the collected dataset. For instance, many of the original parcels in the Hennepin dataset included a market value of zero. These regions are often either unlabeled or public land. We also remove parcels with disproportionately high value from downtown Minneapolis. 
 
-Fusce ut elit euismod massa convallis volutpat vitae et magna.
+Each sample of the dataset contains the information: region image, parcel masks, and corresponding market values. We collected over 65\,000 parcels with an average area of 984 pixels and an average value of \cash{286346}. The average value of a pixel on the training set is \cash{379.74}. We hold out 20\% of the dataset for testing and validation sets, with 10\% used for validation and 10\% used for testing. 
