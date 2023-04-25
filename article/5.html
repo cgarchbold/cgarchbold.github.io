@@ -1,0 +1,185 @@
+<!doctypehtml>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mapping Kentucky Forrests</title>
+
+  <meta name="viewport"content="width=device-width,initial-scale=1">
+  <meta http-equiv="X-UA-Compatible"content="ie=edge">
+
+  <link rel="shortcut icon"href="../assets/favicon.ico"type="image/x-icon">
+  <link rel="preload"href="../styles/article.css"as="style">
+  <link rel="stylesheet"href="../styles/article.css">
+</head>
+<body>
+  <header id="top-container"role="navigation">
+    <nav>
+  <a class="logo-link"href="/">
+    <h1>COHEN GRAY ARCHBOLD</h1>
+    <span>Computer Vision</span>
+  </a>
+  <small>
+    <a id="about"class="info-link"href="/about.html">About</a> /
+    <a id="works"class="info-link"href="/works.html">📜Works</a> /
+    <a id="articles"class="info-link"href="/articles.html">📚Articles</a>
+  </small>
+</nav>
+
+  </header>
+  <main id="main-container">
+    <article id="article-container">
+      <h1 id="article-title">
+        Mapping Kentucky Forrests
+      </h1>
+      
+        <h2 id="article-subtitle">
+          Using geopandas to plot geo-spatial data
+        </h2>
+      
+      <time id="article-date">
+        2018.8.08
+      </time>
+      <section id="article-content-container">
+        <details><summary>Table of Contents</summary>
+<p><div class="table-of-contents"><ul><li><a href="#import-data-and-extract-pandas-dataframe">Import Data and extract Pandas DataFrame</a><li><a href="#grab-only-the-geometry-data">Grab only the geometry data</a><li><a href="#plotting">Plotting</a></ul></div><p></p>
+</details>
+<p>Grabbing data from google drive</p>
+<pre class="hljs"><code>from google.colab import drive
+drive.mount('/content/drive')
+</code></pre>
+<pre><code>Mounted at /content/drive
+</code></pre>
+<h2 id="import-data-and-extract-pandas-dataframe"tabindex="-1">Import Data and extract Pandas DataFrame</h2>
+<pre class="hljs"><code>import geopandas as gpd
+
+path = &quot;/content/drive/My Drive/Data/Woodlands2016/Woodlands2016.shp&quot;
+
+#reading data using geopandas
+full_data = gpd.read_file(path)
+
+
+#view the top (first five rows)
+full_data.head()
+</code></pre>
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+<pre><code>.dataframe tbody tr th {
+    vertical-align: top;
+}
+
+.dataframe thead th {
+    text-align: right;
+}
+</code></pre>
+</style>
+<table border="1"class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>OBJECTID</th>
+      <th>SHAPE_Leng</th>
+      <th>Shape_Le_1</th>
+      <th>Shape_Area</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>287443</td>
+      <td>1054.643958</td>
+      <td>1054.643958</td>
+      <td>6.085877e+04</td>
+      <td>POLYGON ((5206728.612 4305311.614, 5206708.345...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>287442</td>
+      <td>516.257175</td>
+      <td>516.257175</td>
+      <td>1.797931e+04</td>
+      <td>POLYGON ((5205657.338 4305400.221, 5205633.798...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>304386</td>
+      <td>15077.412517</td>
+      <td>15077.412517</td>
+      <td>2.400849e+06</td>
+      <td>POLYGON ((5204878.171 4305337.325, 5204892.193...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>287441</td>
+      <td>940.564755</td>
+      <td>940.564755</td>
+      <td>4.244522e+04</td>
+      <td>POLYGON ((5207534.783 4305202.197, 5207487.267...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>287440</td>
+      <td>851.483539</td>
+      <td>851.483539</td>
+      <td>3.446043e+04</td>
+      <td>POLYGON ((5208346.698 4305006.344, 5208285.331...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<h2 id="grab-only-the-geometry-data"tabindex="-1">Grab only the geometry data</h2>
+<pre class="hljs"><code>data = full_data.loc[:, 'geometry'].copy()
+
+data.head()
+</code></pre>
+<pre><code>0    POLYGON ((5206728.612 4305311.614, 5206708.345...
+1    POLYGON ((5205657.338 4305400.221, 5205633.798...
+2    POLYGON ((5204878.171 4305337.325, 5204892.193...
+3    POLYGON ((5207534.783 4305202.197, 5207487.267...
+4    POLYGON ((5208346.698 4305006.344, 5208285.331...
+Name: geometry, dtype: geometry
+</code></pre>
+<h2 id="plotting"tabindex="-1">Plotting</h2>
+<pre class="hljs"><code>data.plot(figsize = (20,20))
+</code></pre>
+<pre><code>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f92aafc7630&gt;
+</code></pre>
+<p><img src="/images/MappingKentuckyForrests_7_1.png"alt="png"loading="lazy"decoding="async"width="404"height="179"></p>
+
+      </section>
+      <section id="article-navigation">
+        
+          <div class="article-navigation-item article-navigation-next">
+            <a href="/article/6.html">
+              <div class="article-navigation-arrow article-navigation-next">＜</div>
+              <div class="article-navigation-content article-navigation-next">
+                <p class="article-navigation-title">MNIST Recognition using Pytorch</p>
+                <p class="article-navigation-subtitle">Tutorial using pytorch to recognize digits using the MNIST DataSet</p>
+              </div>
+            </a>
+          </div>
+        
+        
+          <div class="article-navigation-item article-navigation-prev">
+            <a href="/article/4.html">
+              <div class="article-navigation-arrow article-navigation-prev">＞</div>
+              <div class="article-navigation-content article-navigation-prev">
+                <p class="article-navigation-title">Mapping Kentucky Firestations</p>
+                <p class="article-navigation-subtitle">Using geopandas to plot geo-spatial data</p>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      <section id="article-list-button-container">
+        <a href="/articles.html">
+          <div id="article-list-button">📚</div>
+        </a>
+      </section>
+    </article>
+  </main>
+
+
