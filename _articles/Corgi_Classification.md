@@ -1,9 +1,9 @@
 ---
-id: 1
-title: "Corgi Classification using CNNs"
-subtitle: " UKY CS 460 Machine Learning "
-date: "2020.12.04"
-tags: "cnn, jupyter"
+id: 2
+title: "Using a CNN for Corgi Classification"
+subtitle: "Using a CNN to classify Corgi Pictures"
+date: "2019.12.08"
+tags: "cnn, classification"
 ---
 
 # Corgi Classification Using CNNs

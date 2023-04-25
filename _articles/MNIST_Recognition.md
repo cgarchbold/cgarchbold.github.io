@@ -1,10 +1,11 @@
 ---
-id: 5
-title: "MNIST Classification using Pytorch"
-subtitle: "  "
-date: "2020.3.20"
-tags: "pytorch, mnist, matplotlib"
+id: 6
+title: "MNIST Recognition using Pytorch"
+subtitle: "Tutorial using pytorch to recognize digits using the MNIST DataSet"
+date: "2019.10.20"
+tags: "cnn, mnist, pytorch"
 ---
+
 
 # MNIST Recognition using Pytorch
 

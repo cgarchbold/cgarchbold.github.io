@@ -35,9 +35,9 @@ class ArticlePublisher {
   static IGNORED_FILES: string[] = ['.DS_Store'];
 
   static md: MarkdownIt = new MarkdownIt({
-    html: false,
-    xhtmlOut: false,
-    breaks: false,
+    html: true,
+    xhtmlOut: true,
+    breaks: true,
     langPrefix: 'language-',
     linkify: true,
     typographer: true,

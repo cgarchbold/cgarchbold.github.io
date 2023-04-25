@@ -1,10 +1,11 @@
 ---
-id: 4
-title: "Mapping Kentucky Forests"
-subtitle: "  "
-date: "2019.3.10"
-tags: "pandas, geopandas, matplotlib"
+id: 5
+title: "Mapping Kentucky Forrests"
+subtitle: "Using geopandas to plot geo-spatial data"
+date: "2018.8.08"
+tags: "geopandas, matplotlib"
 ---
+
 
 Grabbing data from google drive
 

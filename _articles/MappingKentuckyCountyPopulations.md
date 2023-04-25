@@ -1,9 +1,9 @@
 ---
-id: 2
+id: 3
 title: "Mapping Kentucky County Populations"
-subtitle: " Ge "
-date: "2019.2.01"
-tags: "pandas, geopandas, matplotlib"
+subtitle: "Using geopandas to plot geo-spatial data"
+date: "2018.10.04"
+tags: "geopandas, matplotlib"
 ---
 
 ```

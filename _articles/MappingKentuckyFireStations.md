@@ -1,10 +1,11 @@
 ---
-id: 3
-title: "Mapping Kentucky Fire Stations"
-subtitle: "  "
-date: "2019.1.20"
-tags: "pandas, geopandas, matplotlib"
+id: 4
+title: "Mapping Kentucky Firestations"
+subtitle: "Using geopandas to plot geo-spatial data"
+date: "2018.9.15"
+tags: "geopandas, matplotlib"
 ---
+
 
 ```
 from google.colab import drive

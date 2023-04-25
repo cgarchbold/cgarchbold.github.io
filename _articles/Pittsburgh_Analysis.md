@@ -1,10 +1,12 @@
 ---
 id: 7
-title: "Pittsburgh Data Analysis"
-subtitle: "  "
-date: "2020.3.15"
-tags: "pandas, geopandas, matplotlib"
+title: "Pittsburgh Household Data"
+subtitle: "Pandas for data manipulation"
+date: "2018.5.10"
+tags: "pandas, csv"
 ---
+
+
 
 https://catalog.data.gov/dataset/pittsburgh-american-community-survey-2014-miscellaneous-data
 
@@ -21,7 +23,7 @@ drive.mount('/content/drive')
     Mounted at /content/drive
     
 
-# Lets use Pandas to extract and look at these CSVs for Pittsburgh Comminitys
+# Lets use Pandas to extract and look at these CSVs for Pittsburgh Communities
 
 
 ```

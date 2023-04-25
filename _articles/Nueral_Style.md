@@ -1,9 +1,9 @@
 ---
-id: 8
-title: "How to Use Neural Style to Create Deep Art"
-subtitle: "  "
-date: "2020.4.20"
-tags: "pytorch, art"
+id: 1
+title: "Using Neural Style to Create Deep Art"
+subtitle: "Quick tutorial on how to use the famous style transfer neural network"
+date: "2019.12.08"
+tags: "cnn, tensorflow"
 ---
 
 
@@ -18,8 +18,10 @@ Hello all! In this notebook I will give a quick tutorial on how to use the famou
 
 *How we will create these types of images without an expensive GPU?* Using Google's cloud computing service **Google Colab** and Google's cloud storage service **Google Drive**.
 
-![png](/images/colab_favicon_256px.png)
-![ico](/images/Google-Drive.ico)
+![Google Colaboratory](images/colab_favicon_256px.png)
+![alt text](images/Google-Drive.ico)
+
+
 # Sticking the Nueral-Style Github repo inside your Google Drive
 
 https://github.com/anishathalye/neural-style
@@ -65,7 +67,6 @@ Then you can cd ("change directory") to make your working directory the director
 # Setting the Notebook to use a GPU
 
 With Colab, Google offers a free GPU to use with image processing. This can be enabled in the Runtime tab at the top.
-
 
 
 # Taking care of a Package Version

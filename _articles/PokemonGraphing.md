@@ -1,10 +1,12 @@
 ---
-id: 9
-title: "Graphing Pokemon Data"
-subtitle: "  "
-date: "2020.7.20"
+id: 8
+title: "Poken Graphing"
+subtitle: "Opening Pokemon Data and Plotting"
+date: "2018.6.01"
 tags: "pandas, matplotlib"
 ---
+
+
 
 # Lets look at the Pokemon Data
 
