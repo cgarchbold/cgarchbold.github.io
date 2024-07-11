@@ -11,13 +11,13 @@ export const siteConfig: SiteConfig = {
   subtitle: 'Personal & Profolio',
   lang: 'en',         // 'en', 'zh_CN', 'zh_TW', 'ja'
   themeColor: {
-    hue: 250,         // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
-    fixed: false,     // Hide the theme color picker for visitors
+    hue: 155,         // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
+    fixed: true,     // Hide the theme color picker for visitors
   },
   banner: {
-    enable: false,
-    src: 'assets/images/demo-banner.png',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-    position: 'center', // Equivalent to object-position, defaults center
+    enable: true,
+    src: 'assets/images/forest_banner.jpg',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+    position: 'top', // Equivalent to object-position, defaults center
   },
   favicon: [    // Leave this array empty to use the default favicon
     // {
@@ -47,21 +47,14 @@ export const profileConfig: ProfileConfig = {
   bio: 'PhD Student at the University of Kentucky. Researching Privacy and Fairness in Machine Learning for vision.',
   links: [
     {
-      name: 'Twitter',
-      icon: 'fa6-brands:twitter',       // Visit https://icones.js.org/ for icon codes
-                                        // You will need to install the corresponding icon set if it's not already included
-                                        // `pnpm add @iconify-json/<icon-set-name>`
-      url: 'https://twitter.com',
-    },
-    {
-      name: 'Steam',
-      icon: 'fa6-brands:steam',
-      url: 'https://store.steampowered.com',
+      name: 'Discord',
+      icon: 'fa6-brands:discord',
+      url: 'https://discordapp.com/users/coheen',
     },
     {
       name: 'GitHub',
       icon: 'fa6-brands:github',
-      url: 'https://github.com/saicaca/fuwari',
+      url: 'https://github.com/cgarchbold',
     },
   ],
 }
