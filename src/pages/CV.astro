@@ -1,0 +1,18 @@
+---
+
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+import { getEntry } from 'astro:content'
+import {i18n} from "../i18n/translation";
+import I18nKey from "../i18n/i18nKey";
+import Markdown from "@components/misc/Markdown.astro";
+
+import pdfref from "../assets/pdf/CV_CGA.pdf";
+---
+<MainGridLayout title={i18n(I18nKey.CV)} description={i18n(I18nKey.CV)}>
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <iframe src="../CV_CGA.pdf" style="width: 100%;height: 1000px;border: none;"></iframe>
+        </div>
+    </div>
+</MainGridLayout

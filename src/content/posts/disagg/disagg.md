@@ -11,6 +11,7 @@ draft: false
 [Link to Repository](https://github.com/mvrl/disaggregation)
 
 [Link to Paper](https://arxiv.org/abs/2306.00246)
+[IEEE Xplore](https://ieeexplore.ieee.org/document/10283436)
 
 This has been ACCEPTED for inclusion as a Poster presentation in IGARSS 2023.
 
