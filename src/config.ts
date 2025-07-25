@@ -15,8 +15,8 @@ export const siteConfig: SiteConfig = {
     fixed: true,     // Hide the theme color picker for visitors
   },
   banner: {
-    enable: true,
-    src: 'assets/images/forest_banner.jpg',   // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+    enable: false,
+    src: 'assets/images/forest_banner.jpg',   // Relative to the /c directory. Relative to the /public directory if it starts with '/'
     position: 'top', // Equivalent to object-position, defaults center
   },
   favicon: [    // Leave this array empty to use the default favicon

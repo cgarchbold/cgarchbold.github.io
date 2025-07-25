@@ -4,7 +4,7 @@ published: 2023-07-11
 description: 'A method to estimate the distribution over property value at the pixel level from remote sensing imagery'
 image: './Poster_Probabilistic_Disaggregation_IGARSS_2023__Copy_.png'
 tags: [semantic segmentation, weak supervision]
-category: 'works'
+category: 'datasets'
 draft: false 
 ---
 

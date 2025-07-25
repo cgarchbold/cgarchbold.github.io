@@ -4,7 +4,7 @@ published: 2023-08-15
 description: 'MIDRC mRALE Mastermind Challenge; AI to predict severity on chest radiographs'
 image: './mrale.png'
 tags: [covid, chest x-ray]
-category: 'works'
+category: 'competitions'
 draft: false 
 ---
 
