@@ -48,14 +48,19 @@ export const profileConfig: ProfileConfig = {
   bio: 'PhD Student at the University of Kentucky. Researching Privacy and Fairness in Machine Learning for vision.',
   links: [
     {
-      name: 'Discord',
-      icon: 'fa6-brands:discord',
-      url: 'https://discordapp.com/users/coheen',
+      name: 'Linkedin',
+      icon: 'fa6-brands:linkedin',
+      url: 'https://www.linkedin.com/in/cgarchbold/',
     },
     {
       name: 'GitHub',
       icon: 'fa6-brands:github',
       url: 'https://github.com/cgarchbold',
+    },
+    {
+      name: 'Discord',
+      icon: 'fa6-brands:discord',
+      url: 'https://discordapp.com/users/coheen',
     },
   ],
 }

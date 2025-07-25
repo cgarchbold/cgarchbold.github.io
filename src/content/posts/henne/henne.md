@@ -1,6 +1,6 @@
 ---
 title: Hennepin County Dataset
-published: 2024-07-11
+published: 2023-01-06
 description: 'A geospatial dataset of parcels and their market value'
 image: './hennepin_example.jpg'
 tags: [dataset, geospatial, remote-sensing]
