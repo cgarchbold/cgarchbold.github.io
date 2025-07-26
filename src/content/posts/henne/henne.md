@@ -8,7 +8,7 @@ category: 'works'
 draft: false 
 ---
 
-[Link to Repository](https://github.com/cgarchbold/GISGather)
+::github{repo="cgarchbold/GISGather"}
 
 The Hennepin County Dataset was collected using GIS Open Data for Hennepin County, Minnesota. For each sample, a sub-region of fine-level aerial imagery from the year 2020 was cropped. 1915 images of size 302x302 were collected with a Ground Sample Distance (GSD) of 1 meter. 
 

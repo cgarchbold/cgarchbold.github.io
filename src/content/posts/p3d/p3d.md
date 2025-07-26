@@ -8,7 +8,7 @@ category: 'works'
 draft: false 
 ---
 
-[Link to Repository](https://github.com/cgarchbold/P3D)
+::github{repo="cgarchbold/P3D"}
 
 [IEEE Xplore](https://ieeexplore.ieee.org/document/10810701)
 

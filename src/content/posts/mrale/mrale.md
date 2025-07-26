@@ -12,6 +12,8 @@ draft: false
 
 [Link to Challenge Review](https://www.youtube.com/watch?v=uuR4q38Qhdo)
 
+::github{repo="cgarchbold/midrc_challenge_2023"}
+
 The mRALE Mastermind Challenge was a competition organized by MIDRC — the Medical Imaging and Data Resource Center — a collaborative initiative supported by the National Institute of Biomedical Imaging and Bioengineering (NIBIB), aiming to foster innovation and open access to high-quality medical imaging data. The challenge tasked participants with building AI models to predict mRALE scores from chest radiographs — a scoring system used by radiologists to quantify the severity of lung involvement in COVID-19 infections.
 
 The goal was to advance the development of machine learning methods that can assist clinicians in assessing disease progression and severity more efficiently and consistently. The dataset comprised labeled chest X-rays from a diverse patient population, and submissions were judged based on how accurately they could predict expert-assigned mRALE scores.

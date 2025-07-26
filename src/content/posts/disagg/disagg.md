@@ -8,7 +8,7 @@ category: 'datasets'
 draft: false 
 ---
 
-[Link to Repository](https://github.com/mvrl/disaggregation)
+::github{repo="mvrl/disaggregation"}
 
 [Link to Paper](https://arxiv.org/abs/2306.00246)
 [IEEE Xplore](https://ieeexplore.ieee.org/document/10283436)
